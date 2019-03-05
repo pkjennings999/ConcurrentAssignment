@@ -267,6 +267,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   int h, w, x, y, c, m;
   #pragma omp parallel for
   for ( m = 0; m < nkernels; m++ ) {
+    #pragma omp parallel for
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
         double sum = 0.0;
