@@ -273,9 +273,11 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
         for ( c = 0; c < nchannels; c++ ) {
           for ( x = 0; x < kernel_order; x++) {
             for ( y = 0; y < kernel_order; y++ ) {
+              //Access optimally in 2 threads, and wait til we get back a result
               sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
             }
           }
+          //Hashmap for this and insert at the end using vectorisiation
           output[m][w][h] = (float) sum;
         }
       }
