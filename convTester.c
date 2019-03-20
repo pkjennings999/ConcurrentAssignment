@@ -34,12 +34,12 @@ int main(void)
 
 
     freopen("parallel6.txt", "w+", stdout);
-    for (int i = 0; i < 3 && i < sizeof(tests[0]) / sizeof(tests[0][0]); i++)
+    for (int i = 0; i < sizeof(tests[0]) / sizeof(tests[0][0]); i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);
         char* argArray[6] = {"conv-harness",
         tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]};
-        for (int j = 0; j < 1; j++)
+        for (int j = 0; j < 5; j++)
         {
             mainCall(6, argArray);
         }
