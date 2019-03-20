@@ -1,2 +1,2 @@
-convMake: conv-harness.c convTester.c
-	gcc -O3 -msse4 -fopenmp conv-harness.c convTester.c -o convTester.out
+convMake: conv-harness.c convTester.c hashmap.c iterator.c
+	gcc -g -O3 -msse4 -fopenmp conv-harness.c convTester.c -o convTester.out

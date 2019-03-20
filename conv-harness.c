@@ -35,6 +35,21 @@
 #include <math.h>
 #include <stdint.h>
 #include <x86intrin.h>
+#include <string.h>
+// #include "hashmap.h"
+// # define NHASH 9997
+
+// struct symbol
+// {
+//   char* name;
+//   int value;
+// };
+
+// struct symbol symtab[NHASH];
+// struct symbol * lookup(char *sym);
+// int set(char *sym, int value);
+// // map_t myMap;
+// struct hashmap* myMap;
 
 /* the following two definitions of DEBUGGING control whether or not
    debugging information is written out. To put the program into
@@ -259,13 +274,44 @@ void multichannel_conv(int16_t *** image, int16_t **** kernels,
   }
 }
 
+
+// void fillImageHashSet(int16_t *** image, int width, int height, int kernel_order, int nchannels)
+// {
+//   int wx, hy, c;
+//   // #pragma omp parallel for collapse(2)
+//   for ( wx = 0; wx < width + kernel_order; wx++ ) {
+//       for ( hy = 0; hy < height + kernel_order; hy++ ) {
+//         for ( c = 0; c < nchannels; c++ ) {
+//           char *wxbuff = (char*) malloc(20);
+//           char *hybuff = (char*) malloc(20);
+//           char *cbuff = (char*) malloc(20);
+//           char *indexbuff = (char*) malloc(61);
+//           sprintf(wxbuff, "%d", wx);
+//           sprintf(hybuff, "%d", hy);
+//           sprintf(cbuff, "%d", c);
+//           strcat(indexbuff, wxbuff);
+//           strcat(indexbuff, hybuff);
+//           strcat(indexbuff, cbuff);
+//           // hashmapsett(myMap, indexbuff, image[wx][hy][c]);
+//           free(wxbuff);
+//           free(hybuff);
+//           free(cbuff);
+//           free(indexbuff);
+//           // set(indexbuff, image[wx][hy][c]);
+//         }
+//       }
+//   }
+// }
+
 /* the fast version of matmul written by the team */
 void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
+  // myMap = hashmap_create();
+  // fillImageHashSet(image, width, height, kernel_order, nchannels);
   int h, w, x, y, c, m;
-  #pragma omp parallel for collapse(2)
+  #pragma omp parallel for collapse(3)
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
@@ -273,8 +319,23 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
         for ( c = 0; c < nchannels; c++ ) {
           for ( x = 0; x < kernel_order; x++) {
             for ( y = 0; y < kernel_order; y++ ) {
+              // char *wxbuff = (char*) malloc(20);
+              // char *hybuff = (char*) malloc(20);
+              // char *cbuff = (char*) malloc(20);
+              // char *indexbuff = (char*) malloc(61);
+              // sprintf(wxbuff, "%d", w+x);
+              // sprintf(hybuff, "%d", h+y);
+              // sprintf(cbuff, "%d", c);
+              // strcat(indexbuff, wxbuff);
+              // strcat(indexbuff, hybuff);
+              // strcat(indexbuff, cbuff);
               //Access optimally in 2 threads, and wait til we get back a result
               sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              // sum += lookup(indexbuff) -> value * (double) kernels[m][c][x][y];
+              // free(wxbuff);
+              // free(hybuff);
+              // free(cbuff);
+              // free(indexbuff);
             }
           }
           //Hashmap for this and insert at the end using vectorisiation
@@ -294,9 +355,12 @@ int mainCall(int argc, char ** argv)
   int16_t *** image, **** kernels;
   float *** control_output, *** output;
   long long mul_time;
+  long long mul_time_dav;
   int width, height, kernel_order, nchannels, nkernels;
   struct timeval start_time;
   struct timeval stop_time;
+  struct timeval start_time_dav;
+  struct timeval stop_time_dav;
 
   if ( argc != 6 ) {
     fprintf(stderr, "Usage: conv-harness <image_width> <image_height> <kernel_order> <number of channels> <number of kernels>\n");
@@ -329,9 +393,13 @@ int mainCall(int argc, char ** argv)
 
   //DEBUGGING(write_out(A, a_dim1, a_dim2));
 
+  gettimeofday(&start_time_dav, NULL);
   /* use a simple multichannel convolution routine to produce control result */
   multichannel_conv(image, kernels, control_output, width,
                     height, nchannels, nkernels, kernel_order);
+  gettimeofday(&stop_time_dav, NULL);
+  mul_time_dav = (stop_time.tv_sec - start_time.tv_sec) * 1000000L +
+    (stop_time.tv_usec - start_time.tv_usec);
 
   /* record starting time of team's code*/
   gettimeofday(&start_time, NULL);
@@ -344,7 +412,7 @@ int mainCall(int argc, char ** argv)
   gettimeofday(&stop_time, NULL);
   mul_time = (stop_time.tv_sec - start_time.tv_sec) * 1000000L +
     (stop_time.tv_usec - start_time.tv_usec);
-  printf("Team conv time: %lld microseconds\n", mul_time);
+  printf("Team conv time: %lld microseconds, a %lld speedup! %lld\n", mul_time, mul_time_dav / mul_time, mul_time_dav);
 
   DEBUGGING(write_out(output, nkernels, width, height));
 
@@ -354,3 +422,67 @@ int mainCall(int argc, char ** argv)
 
   return 0;
 }
+
+// static unsigned symhash(char *sym)
+// {
+//   unsigned int hash = 0;
+//   unsigned c;
+
+//   while(c = *sym++) hash = hash*9 ^ c;
+
+//   return hash;
+// }
+
+// struct symbol* lookup(char *sym)
+// {
+//   struct symbol *sp = &symtab[symhash(sym)%NHASH];
+//   int scount = NHASH;
+
+//   while(--scount >= 0)
+//   {
+//     if (sp -> name && strcmp(sp -> name, sym) == 0)
+//     {
+//       return sp;
+//     }
+
+//     if(!sp->name)
+//     {
+//       return 0;
+//     }
+
+//     if(++sp >= symtab+NHASH)
+//     {
+//       sp = symtab;
+//     }
+//   }
+//   return 0;
+// }
+
+// int set(char *sym, int value)
+// {
+//   struct symbol *sp = &symtab[symhash(sym)%NHASH];
+//   int scount = NHASH;
+
+//   while(--scount >= 0)
+//   {
+//     if (!sp -> name)
+//     {
+//       sp -> name = malloc(sizeof(sym));
+//       strcpy(sp -> name, sym);
+//       sp -> value = value;
+//       return 1;
+//     }
+//     else if (strcmp(sp -> name, sym) == 0)
+//     {
+//       sp -> value = value;
+//       return 1;
+//     }
+
+//     if(++sp >= symtab+NHASH)
+//     {
+//       sp = symtab;
+//     }
+//   }
+  // yyerror("table overflow");
+  // abort();
+// }
