@@ -311,11 +311,26 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   // myMap = hashmap_create();
   // fillImageHashSet(image, width, height, kernel_order, nchannels);
   int h, w, x, y, c, m;
+  double sumArr[nkernels][width][height];
+
   #pragma omp parallel for collapse(3)
+  for (int i = 0; i < nkernels; i++)
+  {
+    for (int j = 0; j < width; j++)
+    {
+      for (int k = 0; k < height; k++)
+      {
+          sumArr[i][j][k] = 0;
+      }
+    }
+  }
+
+
+  #pragma omp parallel for collapse(6)
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
-        double sum = 0.0;
+        // double sum = 0.0;
         for ( c = 0; c < nchannels; c++ ) {
           for ( x = 0; x < kernel_order; x++) {
             for ( y = 0; y < kernel_order; y++ ) {
@@ -330,7 +345,14 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
               // strcat(indexbuff, hybuff);
               // strcat(indexbuff, cbuff);
               //Access optimally in 2 threads, and wait til we get back a result
-              sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              // sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              // output[m][w][h] = (float)sum;
+              // float dubb = output[m][w][h];
+              // if (dubb != (float)sum)
+              // {
+              //   fprintf(stderr, "WHAT %f, %f\n", dubb, sum);
+              // }
+              sumArr[m][w][h] = sumArr[m][w][h] + (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
               // sum += lookup(indexbuff) -> value * (double) kernels[m][c][x][y];
               // free(wxbuff);
               // free(hybuff);
@@ -339,8 +361,20 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
             }
           }
           //Hashmap for this and insert at the end using vectorisiation
-          output[m][w][h] = (float) sum;
+          // output[m][w][h] = (float) sum;
         }
+      }
+    }
+  }
+
+  #pragma omp parallel for collapse(3)
+  for (int i = 0; i < nkernels; i++)
+  {
+    for (int j = 0; j < width; j++)
+    {
+      for (int k = 0; k < height; k++)
+      {
+          output[i][j][k] = (float) sumArr[i][j][k];
       }
     }
   }
@@ -398,8 +432,8 @@ int mainCall(int argc, char ** argv)
   multichannel_conv(image, kernels, control_output, width,
                     height, nchannels, nkernels, kernel_order);
   gettimeofday(&stop_time_dav, NULL);
-  mul_time_dav = (stop_time.tv_sec - start_time.tv_sec) * 1000000L +
-    (stop_time.tv_usec - start_time.tv_usec);
+  mul_time_dav = (stop_time_dav.tv_sec - start_time_dav.tv_sec) * 1000000L +
+    (stop_time_dav.tv_usec - start_time_dav.tv_usec);
 
   /* record starting time of team's code*/
   gettimeofday(&start_time, NULL);
