@@ -348,7 +348,9 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
-        double sum = 0.0;
+        double sum[] = [4];
+        double ans =0.0;
+        __m128 a4 = _mm_loadu_ps(&sum[0]);
         for ( c = 0; c < nchannels; c++ ) {
           for ( x = 0; x < kernel_order; x++) {
             for ( y = 0; y < kernel_order; y++ ) {
@@ -363,7 +365,15 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
               // strcat(indexbuff, hybuff);
               // strcat(indexbuff, cbuff);
               //Access optimally in 2 threads, and wait til we get back a result
-              sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              //sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              
+              __m128 b4 = _mm_loadu_ps(&image[w+x][h+y][c]);
+              __m128 c4 = _mm_loadu_ps(&kernels[m][c][x][y]);
+
+              __m128 d4 = _m128 _mm_mul_ps(__m128 a, __m128 b);
+
+              __m128 a4 = _mm_add_ps(a4, d4);
+
               // output[m][w][h] = (float)sum;
               // float dubb = output[m][w][h];
               // if (dubb != (float)sum)
@@ -383,7 +393,9 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
             }
           }
           //Hashmap for this and insert at the end using vectorisiation
-          output[m][w][h] = (float) sum;
+          //output[m][w][h] = (float) sum;
+          (float)_mm_store_ps(sum, __m128 a4);
+          output[m][w][h] = sum[0] + sum [1] + sum[2] + sum[3];
         }
       }
     }
