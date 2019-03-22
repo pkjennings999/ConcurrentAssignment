@@ -102,9 +102,9 @@ float **** new_empty_4d_matrix_float(int dim0, int dim1, int dim2, int dim3)
 
 double *** new_empty_3d_matrix_double(int dim0, int dim1, int dim2)
 {
-  float *** result = malloc(dim0 * sizeof(double**));
-  float ** mat1 = malloc(dim0 * dim1 * sizeof(double*));
-  float * mat2 = malloc(dim0 * dim1 * dim2 * sizeof(double));
+  double *** result = malloc(dim0 * sizeof(double**));
+  double ** mat1 = malloc(dim0 * dim1 * sizeof(double*));
+  double * mat2 = malloc(dim0 * dim1 * dim2 * sizeof(double));
   int i, j;
 
 
@@ -329,7 +329,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   // myMap = hashmap_create();
   // fillImageHashSet(image, width, height, kernel_order, nchannels);
   int h, w, x, y, c, m;
-  double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
+  // double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
 
   // #pragma omp parallel for collapse(3)
   // for (int i = 0; i < nkernels; i++)
@@ -344,11 +344,11 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   // }
 
 
-  #pragma omp parallel for collapse(6)
+  #pragma omp parallel for collapse(1)
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
-        // double sum = 0.0;
+        double sum = 0.0;
         for ( c = 0; c < nchannels; c++ ) {
           for ( x = 0; x < kernel_order; x++) {
             for ( y = 0; y < kernel_order; y++ ) {
@@ -363,7 +363,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
               // strcat(indexbuff, hybuff);
               // strcat(indexbuff, cbuff);
               //Access optimally in 2 threads, and wait til we get back a result
-              // sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
               // output[m][w][h] = (float)sum;
               // float dubb = output[m][w][h];
               // if (dubb != (float)sum)
@@ -374,7 +374,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
               // {
               //   fprintf(stderr,"%d", m);
               // }
-              sumArr[m][w][h] = sumArr[m][w][h] + (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+              // sumArr[m][w][h] = sumArr[m][w][h] + (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
               // sum += lookup(indexbuff) -> value * (double) kernels[m][c][x][y];
               // free(wxbuff);
               // free(hybuff);
@@ -383,23 +383,23 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
             }
           }
           //Hashmap for this and insert at the end using vectorisiation
-          // output[m][w][h] = (float) sum;
+          output[m][w][h] = (float) sum;
         }
       }
     }
   }
 
-  #pragma omp parallel for collapse(3)
-  for (int i = 0; i < nkernels; i++)
-  {
-    for (int j = 0; j < width; j++)
-    {
-      for (int k = 0; k < height; k++)
-      {
-          output[i][j][k] = (float) sumArr[i][j][k];
-      }
-    }
-  }
+  // #pragma omp parallel for collapse(3)
+  // for (int i = 0; i < nkernels; i++)
+  // {
+  //   for (int j = 0; j < width; j++)
+  //   {
+  //     for (int k = 0; k < height; k++)
+  //     {
+  //         output[i][j][k] = (float) sumArr[i][j][k];
+  //     }
+  //   }
+  // }
 }
 
 int mainCall(int argc, char ** argv)
@@ -451,7 +451,7 @@ int mainCall(int argc, char ** argv)
 
   gettimeofday(&start_time_dav, NULL);
   /* use a simple multichannel convolution routine to produce control result */
-  team_conv(image, kernels, control_output, width,
+  multichannel_conv(image, kernels, control_output, width,
                     height, nchannels, nkernels, kernel_order);
   gettimeofday(&stop_time_dav, NULL);
   mul_time_dav = (stop_time_dav.tv_sec - start_time_dav.tv_sec) * 1000000L +
