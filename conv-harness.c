@@ -344,7 +344,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   // }
 
 
-  #pragma omp parallel for collapse(2)
+  #pragma omp parallel for collapse(3)
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
