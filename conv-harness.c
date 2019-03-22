@@ -371,7 +371,7 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
               __m128 b4 = _mm_loadu_ps(&image[w+x][h+y][c]);
               __m128 c4 = _mm_loadu_ps(&kernels[m][c][x][y]);
 
-              __m128 d4 = _m128 _mm_mul_ps(__m128 a, __m128 b);
+              __m128 d4 = _mm_mul_ps( a, b);
 
               __m128 a4 = _mm_add_ps(a4, d4);
 
@@ -395,7 +395,7 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
           }
           //Hashmap for this and insert at the end using vectorisiation
           //output[m][w][h] = (float) sum;
-          (float)_mm_store_ps(sum, __m128 a4);
+          (float)_mm_store_ps(sum, a4);
           output[m][w][h] = sum[0] + sum [1] + sum[2] + sum[3];
         }
       }
