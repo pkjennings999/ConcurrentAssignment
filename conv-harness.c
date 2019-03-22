@@ -371,7 +371,7 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
               __m128 b4 = _mm_loadu_ps(&image[w+x][h+y][c]);
               __m128 c4 = _mm_loadu_ps(&kernels[m][c][x][y]);
 
-              __m128 d4 = _mm_mul_ps( a, b);
+              __m128 d4 = _mm_mul_ps(b4, c4);
 
               __m128 a4 = _mm_add_ps(a4, d4);
 
