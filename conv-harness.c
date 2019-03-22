@@ -35,6 +35,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <x86intrin.h>
+#include <xmmintrin.h>
 #include <string.h>
 // #include "hashmap.h"
 // # define NHASH 9997
