@@ -322,7 +322,7 @@ void multichannel_conv(int16_t *** image, int16_t **** kernels,
 // }
 
 /* the fast version of matmul written by the team */
-void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
+void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float *** restrict output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
@@ -344,7 +344,7 @@ void team_conv(int16_t *** image, int16_t **** kernels, float *** output,
   // }
 
 
-  #pragma omp parallel for collapse(3)
+  #pragma omp parallel for collapse(1)
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
