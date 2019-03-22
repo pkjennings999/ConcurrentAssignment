@@ -349,7 +349,7 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
   for ( m = 0; m < nkernels; m++ ) {
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
-        double sum[] = [4];
+        double sum[4] = {0};
         double ans =0.0;
         __m128 a4 = _mm_loadu_ps(&sum[0]);
         for ( c = 0; c < nchannels; c++ ) {
@@ -374,7 +374,6 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
               __m128 d4 = _mm_mul_ps(b4, c4);
 
               __m128 a4 = _mm_add_ps(a4, d4);
-
               // output[m][w][h] = (float)sum;
               // float dubb = output[m][w][h];
               // if (dubb != (float)sum)
@@ -395,7 +394,7 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
           }
           //Hashmap for this and insert at the end using vectorisiation
           //output[m][w][h] = (float) sum;
-          (float)_mm_store_ps(sum, a4);
+          _mm_store_ps(sum, a4);
           output[m][w][h] = sum[0] + sum [1] + sum[2] + sum[3];
         }
       }
