@@ -401,21 +401,21 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
   int h, w, x, y, c, m;
   // double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
 
-  double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
-  #pragma omp parallel for collapse(4)
-  for (int i = 0; i < nkernels; i++)
-  {
-    for (int j = 0; j < nchannels; j++)
-    {
-      for (int k = 0; k < kernel_order; k++)
-      {
-        for(int l = 0; l < kernel_order; l++)
-        {
-          newKernels[i][k][l][j] = (double)kernels[i][j][k][l];
-        }
-      }
-    }
-  }
+  // double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
+  // #pragma omp parallel for collapse(4)
+  // for (int i = 0; i < nkernels; i++)
+  // {
+  //   for (int j = 0; j < nchannels; j++)
+  //   {
+  //     for (int k = 0; k < kernel_order; k++)
+  //     {
+  //       for(int l = 0; l < kernel_order; l++)
+  //       {
+  //         newKernels[i][k][l][j] = (double)kernels[i][j][k][l];
+  //       }
+  //     }
+  //   }
+  // }
 
   // fprintf(stderr, "%d", image[width+kernel_order-1][height+kernel_order-1][nchannels]);
 
@@ -445,9 +445,9 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
         
         for ( x = 0; x < kernel_order; x++) {
           for ( y = 0; y < kernel_order; y++ ) {
-            #pragma omp simd safelen(4)
+            // #pragma omp simd safelen(4)
             for(c = 0; c < nchannels; c++) {
-              sum += (double)image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
+              sum += (double)image[w+x][h+y][c] * (double) kernels[m][c][x][y];
               // char *wxbuff = (char*) malloc(20);
               // char *hybuff = (char*) malloc(20);
               // char *cbuff = (char*) malloc(20);
