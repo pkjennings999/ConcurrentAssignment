@@ -6,9 +6,7 @@
    pixels of the image.
 
    Author: David Gregg
-   Date:   March 2019
-
-   Version 1.6 : Modified the code so that the input tensor is float
+   Date:   February 2019
 
    Version 1.5 : Modified the code so that the input and kernel
                  are tensors of 16-bit integer values
@@ -18,10 +16,10 @@
 
    Version 1.3 : Fixed which loop variables were being incremented
                  in write_out();
-                 Fixed dimensions of output and control_output
+                 Fixed dimensions of output and control_output 
                  matrices in main function
 
-   Version 1.2 : Changed distribution of test data to (hopefully)
+   Version 1.2 : Changed distribution of test data to (hopefully) 
                  eliminate random walk of floating point error;
                  Also introduced checks to restrict kernel-order to
                  a small set of values
@@ -323,7 +321,7 @@ void check_result(float *** result, float *** control,
 }
 
 /* the slow but correct version of matmul written by David */
-void multichannel_conv(float *** image, int16_t **** kernels,
+void multichannel_conv(int16_t *** image, int16_t **** kernels,
 		       float *** output, int width, int height,
 		       int nchannels, int nkernels, int kernel_order)
 {
@@ -376,7 +374,7 @@ void multichannel_conv(float *** image, int16_t **** kernels,
 // }
 
 /* the fast version of matmul written by the team */
-void team_conv(float *** restrict image, int16_t **** restrict kernels, float *** restrict output,
+void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float *** restrict output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
@@ -385,21 +383,21 @@ void team_conv(float *** restrict image, int16_t **** restrict kernels, float **
   int h, w, x, y, c, m;
   // double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
 
-  float**** newKernels = new_empty_4d_matrix_float(nkernels, kernel_order, kernel_order, nchannels);
-  #pragma omp parallel for collapse(4)
-  for (int i = 0; i < nkernels; i++)
-  {
-    for (int j = 0; j < nchannels; j++)
-    {
-      for (int k = 0; k < kernel_order; k++)
-      {
-        for(int l = 0; l < kernel_order; l++)
-        {
-          newKernels[i][k][l][j] = (float)kernels[i][j][k][l];
-        }
-      }
-    }
-  }
+  // float**** newKernels = new_empty_4d_matrix_float(nkernels, kernel_order, kernel_order, nchannels);
+  // #pragma omp parallel for collapse(4)
+  // for (int i = 0; i < nkernels; i++)
+  // {
+  //   for (int j = 0; j < nchannels; j++)
+  //   {
+  //     for (int k = 0; k < kernel_order; k++)
+  //     {
+  //       for(int l = 0; l < kernel_order; l++)
+  //       {
+  //         newKernels[i][k][l][j] = (float)kernels[i][j][k][l];
+  //       }
+  //     }
+  //   }
+  // }
 
 
   #pragma omp parallel for collapse(3)
@@ -407,12 +405,14 @@ void team_conv(float *** restrict image, int16_t **** restrict kernels, float **
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
         double sum = 0;
-        double res = 0;
+        // double res = 0;
         // double ans =0.0;
         // __m128 a4 = _mm_loadu_ps(&sum[0]);
+        for(c = 0; c < nchannels; c++) {
         for ( x = 0; x < kernel_order; x++) {
           for ( y = 0; y < kernel_order; y++ ) {
-            for(c = 0; c < nchannels; c+=4) {
+            
+              sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
               // char *wxbuff = (char*) malloc(20);
               // char *hybuff = (char*) malloc(20);
               // char *cbuff = (char*) malloc(20);
@@ -430,23 +430,27 @@ void team_conv(float *** restrict image, int16_t **** restrict kernels, float **
               // tres += (double) image[w+x][h+y][c+2] * (double) newKernels[m][x][y][c+2];
               // tres += (double) image[w+x][h+y][c+3] * (double) newKernels[m][x][y][c+3];
               // res += tres;
-              
               // fprintf(stderr, "%f\n", (double)(image[w+x][h+y][c] * newKernels[m][x][y][c] + image[w+x][h+y][c+1] * newKernels[m][x][y][c+1] + image[w+x][h+y][c+2] * newKernels[m][x][y][c+2] + image[w+x][h+y][c+3] * newKernels[m][x][y][c+3]) );
-              float* temp = malloc(sizeof(float)*4);
-              __m128 b4 = _mm_load_ps(&image[w+x][h+y][c]);
-              __m128 c4 = _mm_load_ps(&newKernels[m][x][y][c]);
+              
+              
+              // float* temp = malloc(sizeof(float)*4);
+              // __m128 b4 = _mm_load_ps(&image[w+x][h+y][c]);
+              // __m128 c4 = _mm_load_ps(&newKernels[m][x][y][c]);
 
-              __m128 d4 = _mm_mul_ps(b4, c4);
+              // __m128 d4 = _mm_mul_ps(b4, c4);
 
-              _mm_store_ps(temp, d4);
+              // _mm_store_ps(temp, d4);
+              // sum += (double)temp[0] + (double)temp[1] + (double)temp[2] + (double)temp[3];
+              // free(temp);
+              
+              
               // if (tres != (double)(temp[0] + temp[1] + temp[2] + temp[3]))
               // {
               //   fprintf(stderr, "%f\n", tres);
               //   fprintf(stderr, "FUIC\n");
               //   fprintf(stderr, "%f\n", (double)temp[0] + (double)temp[1] + (double)temp[2] + (double)temp[3]);
               // }
-              sum += (double)temp[0] + (double)temp[1] + (double)temp[2] + (double)temp[3];
-              free(temp);
+
 
               // sum += (double)image[w+x][h+y][c] * (double)newKernels[m][x][y][c] + (double)image[w+x][h+y][c+1] * (double)newKernels[m][x][y][c+1] + (double)image[w+x][h+y][c+2] * (double)newKernels[m][x][y][c+2] + (double)image[w+x][h+y][c+3] * (double)newKernels[m][x][y][c+3];
 
@@ -499,8 +503,7 @@ int mainCall(int argc, char ** argv)
   //float kernels[M][C][K][K];
   //float output[M][W][H];
 
-  float *** image;
-  int16_t **** kernels;
+  int16_t *** image, **** kernels;
   float *** control_output, *** output;
   long long mul_time;
   long long mul_time_dav;
@@ -533,7 +536,7 @@ int mainCall(int argc, char ** argv)
   }
 
   /* allocate the matrices */
-  image = gen_random_3d_matrix_float(width+kernel_order, height + kernel_order,
+  image = gen_random_3d_matrix_int16(width+kernel_order, height + kernel_order,
                                nchannels);
   kernels = gen_random_4d_matrix_int16(nkernels, nchannels, kernel_order, kernel_order);
   output = new_empty_3d_matrix_float(nkernels, width, height);
