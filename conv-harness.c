@@ -101,22 +101,40 @@ float **** new_empty_4d_matrix_float(int dim0, int dim1, int dim2, int dim3)
   return result;
 }
 
-double *** new_empty_3d_matrix_double(int dim0, int dim1, int dim2)
+
+double **** new_empty_4d_matrix_double(int dim0, int dim1, int dim2, int dim3)
 {
-  double *** result = malloc(dim0 * sizeof(double**));
-  double ** mat1 = malloc(dim0 * dim1 * sizeof(double*));
-  double * mat2 = malloc(dim0 * dim1 * dim2 * sizeof(double));
-  int i, j;
+  double **** result = malloc(dim0 * sizeof(double***));
+  double *** mat1 = malloc(dim0 * dim1 * sizeof(double**));
+  double ** mat2 = malloc(dim0 * dim1 * dim2 * sizeof(double*));
+  double * mat3 = malloc(dim0 * dim1 * dim2 *dim3 * sizeof(double));
+  int i, j, k;
 
 
   for ( i = 0; i < dim0; i++ ) {
     result[i] = &(mat1[i*dim1]);
     for ( j = 0; j < dim1; j++ ) {
       result[i][j] = &(mat2[i*dim1*dim2 + j*dim2]);
+      for ( k = 0; k < dim2; k++ ) {
+        result[i][j][k] = &(mat3[i*dim1*dim2*dim3+j*dim2*dim3+k*dim3]);
+      }
     }
   }
 
   return result;
+}
+
+double *** new_empty_3d_matrix_double(int dim0, int dim1, int dim2)
+{
+  double **** mat4d;
+  double *** mat3d;
+
+  // create a 4d matrix with single first dimension
+  mat4d = new_empty_4d_matrix_double(1, dim0, dim1, dim2);
+  // now throw away out first dimension
+  mat3d = mat4d[0];
+  free(mat4d);
+  return mat3d;
 }
 
 /* create new empty 3d matrix */
@@ -374,7 +392,7 @@ void multichannel_conv(int16_t *** image, int16_t **** kernels,
 // }
 
 /* the fast version of matmul written by the team */
-void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float *** restrict output,
+void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
@@ -383,18 +401,33 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
   int h, w, x, y, c, m;
   // double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
 
-  // float**** newKernels = new_empty_4d_matrix_float(nkernels, kernel_order, kernel_order, nchannels);
-  // #pragma omp parallel for collapse(4)
-  // for (int i = 0; i < nkernels; i++)
+  double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
+  #pragma omp parallel for collapse(4)
+  for (int i = 0; i < nkernels; i++)
+  {
+    for (int j = 0; j < nchannels; j++)
+    {
+      for (int k = 0; k < kernel_order; k++)
+      {
+        for(int l = 0; l < kernel_order; l++)
+        {
+          newKernels[i][k][l][j] = (double)kernels[i][j][k][l];
+        }
+      }
+    }
+  }
+
+  // fprintf(stderr, "%d", image[width+kernel_order-1][height+kernel_order-1][nchannels]);
+
+  // double*** newImage = new_empty_3d_matrix_double(width+kernel_order, height+kernel_order, nchannels);
+  // #pragma omp parallel for collapse(3)
+  // for (int i = 0; i < width+kernel_order; i++)
   // {
-  //   for (int j = 0; j < nchannels; j++)
+  //   for (int j = 0; j < height+kernel_order; j++)
   //   {
-  //     for (int k = 0; k < kernel_order; k++)
+  //     for (int k = 0; k < nchannels; k++)
   //     {
-  //       for(int l = 0; l < kernel_order; l++)
-  //       {
-  //         newKernels[i][k][l][j] = (float)kernels[i][j][k][l];
-  //       }
+  //       newImage[i][j][k] = (double)image[i][j][k];
   //     }
   //   }
   // }
@@ -402,17 +435,19 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
 
   #pragma omp parallel for collapse(3)
   for ( m = 0; m < nkernels; m++ ) {
+    
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
-        double sum = 0;
+        double sum = 0.0;
         // double res = 0;
         // double ans =0.0;
-        // __m128 a4 = _mm_loadu_ps(&sum[0]);
-        for(c = 0; c < nchannels; c++) {
+        // __m128d a4 = _mm_loadu_pd(&temp[0]);
+        
         for ( x = 0; x < kernel_order; x++) {
           for ( y = 0; y < kernel_order; y++ ) {
-            
-              sum += (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
+            #pragma omp simd safelen(4)
+            for(c = 0; c < nchannels; c++) {
+              sum += (double)image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
               // char *wxbuff = (char*) malloc(20);
               // char *hybuff = (char*) malloc(20);
               // char *cbuff = (char*) malloc(20);
@@ -425,26 +460,27 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
               // strcat(indexbuff, cbuff);
               //Access optimally in 2 threads, and wait til we get back a result
               // double tres = 0;
-              // tres += (double) image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
-              // tres += (double) image[w+x][h+y][c+1] * (double) newKernels[m][x][y][c+1];
-              // tres += (double) image[w+x][h+y][c+2] * (double) newKernels[m][x][y][c+2];
-              // tres += (double) image[w+x][h+y][c+3] * (double) newKernels[m][x][y][c+3];
-              // res += tres;
+              // sum += (double) newImage[w+x][h+y][c] * (double) newKernels[m][x][y][c];
+              // sum += (double) newImage[w+x][h+y][c+1] * (double) newKernels[m][x][y][c+1];
+              // sum += (double) newImage[w+x][h+y][c+2] * (double) newKernels[m][x][y][c+2];
+              // sum += (double) newImage[w+x][h+y][c+3] * (double) newKernels[m][x][y][c+3];
+              // // res += tres;
               // fprintf(stderr, "%f\n", (double)(image[w+x][h+y][c] * newKernels[m][x][y][c] + image[w+x][h+y][c+1] * newKernels[m][x][y][c+1] + image[w+x][h+y][c+2] * newKernels[m][x][y][c+2] + image[w+x][h+y][c+3] * newKernels[m][x][y][c+3]) );
               
               
-              // float* temp = malloc(sizeof(float)*4);
-              // __m128 b4 = _mm_load_ps(&image[w+x][h+y][c]);
-              // __m128 c4 = _mm_load_ps(&newKernels[m][x][y][c]);
+              // __m128d b4 = _mm_load_pd(&newImage[w+x][h+y][c]);
+              // __m128d c4 = _mm_load_pd(&newKernels[m][x][y][c]);
 
-              // __m128 d4 = _mm_mul_ps(b4, c4);
+              // __m128d d4 = _mm_mul_pd(b4, c4);
 
-              // _mm_store_ps(temp, d4);
-              // sum += (double)temp[0] + (double)temp[1] + (double)temp[2] + (double)temp[3];
+              // // a4 = _mm_add_pd(a4, d4);
+              // double* temp = malloc(sizeof(double)*4);
+              // _mm_store_pd(temp, d4);
+              // // sum += temp[0] + temp[1] + temp[2] + temp[3];
               // free(temp);
               
               
-              // if (tres != (double)(temp[0] + temp[1] + temp[2] + temp[3]))
+              // if (tres != (temp[0] + temp[1] + temp[2] + temp[3]))
               // {
               //   fprintf(stderr, "%f\n", tres);
               //   fprintf(stderr, "FUIC\n");
@@ -476,9 +512,11 @@ void team_conv(int16_t *** restrict image, int16_t **** restrict kernels, float 
             }
           }
           //Hashmap for this and insert at the end using vectorisiation
-          //output[m][w][h] = (float) sum;
-          // _mm_store_ps(sum, a4);
-          output[m][w][h] = sum;
+          output[m][w][h] = (float) sum;
+          // _mm_hadd_pd(a4,a4);
+          // _mm_hadd_pd(a4,a4);
+          // _mm_store_pd(temp, a4);
+          // output[m][w][h] = (float)temp[0];
         }
       }
     }
