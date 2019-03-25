@@ -433,7 +433,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
   // }
 
 
-  #pragma omp parallel for collapse(3)
+  #pragma omp parallel for collapse(1)
   for ( m = 0; m < nkernels; m++ ) {
     
     for ( w = 0; w < width; w++ ) {
@@ -445,7 +445,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
         
         for ( x = 0; x < kernel_order; x++) {
           for ( y = 0; y < kernel_order; y++ ) {
-            #pragma omp simd
+            #pragma omp simd safelen(4)
             for(c = 0; c < nchannels; c++) {
               sum += (double)image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
               // char *wxbuff = (char*) malloc(20);
