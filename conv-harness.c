@@ -37,20 +37,6 @@
 #include <x86intrin.h>
 #include <xmmintrin.h>
 #include <string.h>
-// #include "hashmap.h"
-// # define NHASH 9997
-
-// struct symbol
-// {
-//   char* name;
-//   int value;
-// };
-
-// struct symbol symtab[NHASH];
-// struct symbol * lookup(char *sym);
-// int set(char *sym, int value);
-// // map_t myMap;
-// struct hashmap* myMap;
 
 /* the following two definitions of DEBUGGING control whether or not
    debugging information is written out. To put the program into
@@ -396,10 +382,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
-  // myMap = hashmap_create();
-  // fillImageHashSet(image, width, height, kernel_order, nchannels);
   int h, w, x, y, c, m;
-  // double*** sumArr = new_empty_3d_matrix_double(nkernels, width, height);
 
   double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
   #pragma omp parallel for collapse(4)
@@ -417,122 +400,23 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
     }
   }
 
-  // fprintf(stderr, "%d", image[width+kernel_order-1][height+kernel_order-1][nchannels]);
-
-  // double*** newImage = new_empty_3d_matrix_double(width+kernel_order, height+kernel_order, nchannels);
-  // #pragma omp parallel for collapse(3)
-  // for (int i = 0; i < width+kernel_order; i++)
-  // {
-  //   for (int j = 0; j < height+kernel_order; j++)
-  //   {
-  //     for (int k = 0; k < nchannels; k++)
-  //     {
-  //       newImage[i][j][k] = (double)image[i][j][k];
-  //     }
-  //   }
-  // }
-
-
   #pragma omp parallel for collapse(3)
   for ( m = 0; m < nkernels; m++ ) {
-    
     for ( w = 0; w < width; w++ ) {
       for ( h = 0; h < height; h++ ) {
         double sum = 0.0;
-        // double res = 0;
-        // double ans =0.0;
-        // __m128d a4 = _mm_loadu_pd(&temp[0]);
-        
         for ( x = 0; x < kernel_order; x++) {
           for ( y = 0; y < kernel_order; y++ ) {
             #pragma omp simd safelen(4)
             for(c = 0; c < nchannels; c++) {
               sum += (double)image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
-              // char *wxbuff = (char*) malloc(20);
-              // char *hybuff = (char*) malloc(20);
-              // char *cbuff = (char*) malloc(20);
-              // char *indexbuff = (char*) malloc(61);
-              // sprintf(wxbuff, "%d", w+x);
-              // sprintf(hybuff, "%d", h+y);
-              // sprintf(cbuff, "%d", c);
-              // strcat(indexbuff, wxbuff);
-              // strcat(indexbuff, hybuff);
-              // strcat(indexbuff, cbuff);
-              //Access optimally in 2 threads, and wait til we get back a result
-              // double tres = 0;
-              // sum += (double) newImage[w+x][h+y][c] * (double) newKernels[m][x][y][c];
-              // sum += (double) newImage[w+x][h+y][c+1] * (double) newKernels[m][x][y][c+1];
-              // sum += (double) newImage[w+x][h+y][c+2] * (double) newKernels[m][x][y][c+2];
-              // sum += (double) newImage[w+x][h+y][c+3] * (double) newKernels[m][x][y][c+3];
-              // // res += tres;
-              // fprintf(stderr, "%f\n", (double)(image[w+x][h+y][c] * newKernels[m][x][y][c] + image[w+x][h+y][c+1] * newKernels[m][x][y][c+1] + image[w+x][h+y][c+2] * newKernels[m][x][y][c+2] + image[w+x][h+y][c+3] * newKernels[m][x][y][c+3]) );
-              
-              
-              // __m128d b4 = _mm_load_pd(&newImage[w+x][h+y][c]);
-              // __m128d c4 = _mm_load_pd(&newKernels[m][x][y][c]);
-
-              // __m128d d4 = _mm_mul_pd(b4, c4);
-
-              // // a4 = _mm_add_pd(a4, d4);
-              // double* temp = malloc(sizeof(double)*4);
-              // _mm_store_pd(temp, d4);
-              // // sum += temp[0] + temp[1] + temp[2] + temp[3];
-              // free(temp);
-              
-              
-              // if (tres != (temp[0] + temp[1] + temp[2] + temp[3]))
-              // {
-              //   fprintf(stderr, "%f\n", tres);
-              //   fprintf(stderr, "FUIC\n");
-              //   fprintf(stderr, "%f\n", (double)temp[0] + (double)temp[1] + (double)temp[2] + (double)temp[3]);
-              // }
-
-
-              // sum += (double)image[w+x][h+y][c] * (double)newKernels[m][x][y][c] + (double)image[w+x][h+y][c+1] * (double)newKernels[m][x][y][c+1] + (double)image[w+x][h+y][c+2] * (double)newKernels[m][x][y][c+2] + (double)image[w+x][h+y][c+3] * (double)newKernels[m][x][y][c+3];
-
-              // d4 = _mm_hadd_ps(d4, d4);
-              // d4 = _mm_hadd_ps(d4, d4);
-              // sum += (double)d4[0];
-              // output[m][w][h] = (float)sum;
-              // float dubb = output[m][w][h];
-              // if (dubb != (float)sum)
-              // {
-              //   fprintf(stderr, "WHAT %f, %f\n", dubb, sum);
-              // }
-              // if (m%20 == 0)
-              // {
-              //   fprintf(stderr,"%d", m);
-              // }
-              // sumArr[m][w][h] = sumArr[m][w][h] + (double) image[w+x][h+y][c] * (double) kernels[m][c][x][y];
-              // sum += lookup(indexbuff) -> value * (double) kernels[m][c][x][y];
-              // free(wxbuff);
-              // free(hybuff);
-              // free(cbuff);
-              // free(indexbuff);
             }
           }
-          //Hashmap for this and insert at the end using vectorisiation
           output[m][w][h] = (float) sum;
-          // _mm_hadd_pd(a4,a4);
-          // _mm_hadd_pd(a4,a4);
-          // _mm_store_pd(temp, a4);
-          // output[m][w][h] = (float)temp[0];
         }
       }
     }
   }
-
-  // #pragma omp parallel for collapse(3)
-  // for (int i = 0; i < nkernels; i++)
-  // {
-  //   for (int j = 0; j < width; j++)
-  //   {
-  //     for (int k = 0; k < height; k++)
-  //     {
-  //         output[i][j][k] = (float) sumArr[i][j][k];
-  //     }
-  //   }
-  // }
 }
 
 int mainCall(int argc, char ** argv)
@@ -611,67 +495,3 @@ int mainCall(int argc, char ** argv)
 
   return 0;
 }
-
-// static unsigned symhash(char *sym)
-// {
-//   unsigned int hash = 0;
-//   unsigned c;
-
-//   while(c = *sym++) hash = hash*9 ^ c;
-
-//   return hash;
-// }
-
-// struct symbol* lookup(char *sym)
-// {
-//   struct symbol *sp = &symtab[symhash(sym)%NHASH];
-//   int scount = NHASH;
-
-//   while(--scount >= 0)
-//   {
-//     if (sp -> name && strcmp(sp -> name, sym) == 0)
-//     {
-//       return sp;
-//     }
-
-//     if(!sp->name)
-//     {
-//       return 0;
-//     }
-
-//     if(++sp >= symtab+NHASH)
-//     {
-//       sp = symtab;
-//     }
-//   }
-//   return 0;
-// }
-
-// int set(char *sym, int value)
-// {
-//   struct symbol *sp = &symtab[symhash(sym)%NHASH];
-//   int scount = NHASH;
-
-//   while(--scount >= 0)
-//   {
-//     if (!sp -> name)
-//     {
-//       sp -> name = malloc(sizeof(sym));
-//       strcpy(sp -> name, sym);
-//       sp -> value = value;
-//       return 1;
-//     }
-//     else if (strcmp(sp -> name, sym) == 0)
-//     {
-//       sp -> value = value;
-//       return 1;
-//     }
-
-//     if(++sp >= symtab+NHASH)
-//     {
-//       sp = symtab;
-//     }
-//   }
-  // yyerror("table overflow");
-  // abort();
-// }
