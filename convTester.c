@@ -4,7 +4,7 @@
 int main(void)
 {
     char* tests[6][5] = {
-    {"16", "16", "5", "1024", "128"},
+    {"16", "16", "1", "32", "32"},
     {"32", "32", "3", "512", "256"},
     {"64", "64", "1", "256", "64"},
     {"128", "128", "7", "128", "128"},
@@ -37,7 +37,7 @@ int main(void)
     */
 
     freopen("output.txt", "w+", stdout);
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 1; i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);
         char* argArray[6] = {"conv-harness",
