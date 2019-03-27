@@ -1,309 +1,309 @@
-16, 16, 1 32, 32
-Team conv time: 52550 microseconds, a 0 speedup! 3032
+16, 16, 5 1024, 128
+Team conv time: 224288 microseconds, a 12 speedup! 2883268
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 18685 microseconds, a 0 speedup! 5338
+Team conv time: 161864 microseconds, a 17 speedup! 2762924
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 14155 microseconds, a 0 speedup! 3105
+Team conv time: 111231 microseconds, a 24 speedup! 2713428
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 14255 microseconds, a 0 speedup! 5419
+Team conv time: 106471 microseconds, a 23 speedup! 2476646
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 14543 microseconds, a 0 speedup! 5377
+Team conv time: 106040 microseconds, a 23 speedup! 2467660
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 13336 microseconds, a 0 speedup! 5408
+Team conv time: 106790 microseconds, a 23 speedup! 2487292
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 14326 microseconds, a 0 speedup! 5503
+Team conv time: 106275 microseconds, a 23 speedup! 2453807
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 11642 microseconds, a 0 speedup! 5399
+Team conv time: 106374 microseconds, a 23 speedup! 2464399
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 14837 microseconds, a 0 speedup! 5406
+Team conv time: 106926 microseconds, a 23 speedup! 2477657
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8782 microseconds, a 0 speedup! 5527
+Team conv time: 106151 microseconds, a 23 speedup! 2470110
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 553 microseconds, a 10 speedup! 6035
+Team conv time: 105870 microseconds, a 23 speedup! 2476014
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 535 microseconds, a 10 speedup! 5426
+Team conv time: 107017 microseconds, a 23 speedup! 2493601
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 508 microseconds, a 10 speedup! 5420
+Team conv time: 106579 microseconds, a 26 speedup! 2840114
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 505 microseconds, a 10 speedup! 5424
+Team conv time: 108697 microseconds, a 22 speedup! 2474135
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 501 microseconds, a 10 speedup! 5421
+Team conv time: 106080 microseconds, a 23 speedup! 2485115
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 508 microseconds, a 10 speedup! 5439
+Team conv time: 105982 microseconds, a 23 speedup! 2467810
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 513 microseconds, a 10 speedup! 5428
+Team conv time: 105849 microseconds, a 23 speedup! 2463857
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 598 microseconds, a 9 speedup! 5415
+Team conv time: 106476 microseconds, a 23 speedup! 2469096
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 529 microseconds, a 10 speedup! 5397
+Team conv time: 107586 microseconds, a 22 speedup! 2473947
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 518 microseconds, a 10 speedup! 5418
+Team conv time: 106620 microseconds, a 23 speedup! 2488539
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 519 microseconds, a 10 speedup! 5421
+Team conv time: 106804 microseconds, a 23 speedup! 2471280
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 504 microseconds, a 10 speedup! 5429
+Team conv time: 106051 microseconds, a 23 speedup! 2453122
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 498 microseconds, a 10 speedup! 5422
+Team conv time: 106861 microseconds, a 23 speedup! 2465801
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 503 microseconds, a 10 speedup! 5412
+Team conv time: 106090 microseconds, a 23 speedup! 2481060
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 534 microseconds, a 10 speedup! 5422
+Team conv time: 106033 microseconds, a 23 speedup! 2468094
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 497 microseconds, a 11 speedup! 5506
+Team conv time: 106570 microseconds, a 23 speedup! 2486716
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 518 microseconds, a 10 speedup! 5407
+Team conv time: 106203 microseconds, a 23 speedup! 2470002
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 534 microseconds, a 10 speedup! 5414
+Team conv time: 106066 microseconds, a 23 speedup! 2491579
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 511 microseconds, a 10 speedup! 5415
+Team conv time: 106430 microseconds, a 23 speedup! 2495105
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 507 microseconds, a 10 speedup! 5439
+Team conv time: 105844 microseconds, a 23 speedup! 2469018
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 537 microseconds, a 10 speedup! 5405
+Team conv time: 105962 microseconds, a 23 speedup! 2465012
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 516 microseconds, a 10 speedup! 5413
+Team conv time: 105767 microseconds, a 23 speedup! 2474787
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 534 microseconds, a 10 speedup! 5441
+Team conv time: 105958 microseconds, a 23 speedup! 2482311
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 505 microseconds, a 10 speedup! 5407
+Team conv time: 106327 microseconds, a 23 speedup! 2485396
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 511 microseconds, a 10 speedup! 5412
+Team conv time: 105899 microseconds, a 23 speedup! 2473765
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 504 microseconds, a 10 speedup! 5435
+Team conv time: 105949 microseconds, a 23 speedup! 2487386
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 499 microseconds, a 10 speedup! 5445
+Team conv time: 106218 microseconds, a 23 speedup! 2453309
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 529 microseconds, a 10 speedup! 5453
+Team conv time: 105729 microseconds, a 23 speedup! 2464305
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 524 microseconds, a 10 speedup! 5418
+Team conv time: 108146 microseconds, a 22 speedup! 2465569
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 575 microseconds, a 9 speedup! 5434
+Team conv time: 106366 microseconds, a 23 speedup! 2449548
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 465 microseconds, a 11 speedup! 5412
+Team conv time: 106481 microseconds, a 23 speedup! 2468313
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 503 microseconds, a 10 speedup! 5416
+Team conv time: 106689 microseconds, a 23 speedup! 2467433
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 514 microseconds, a 10 speedup! 5401
+Team conv time: 105901 microseconds, a 23 speedup! 2475428
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 528 microseconds, a 10 speedup! 5400
+Team conv time: 106585 microseconds, a 23 speedup! 2487825
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 521 microseconds, a 10 speedup! 5513
+Team conv time: 106427 microseconds, a 23 speedup! 2470180
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 504 microseconds, a 10 speedup! 5413
+Team conv time: 106170 microseconds, a 26 speedup! 2827171
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 507 microseconds, a 10 speedup! 5414
+Team conv time: 109905 microseconds, a 22 speedup! 2459740
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 495 microseconds, a 11 speedup! 5480
+Team conv time: 109621 microseconds, a 23 speedup! 2616888
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 505 microseconds, a 10 speedup! 5418
+Team conv time: 109392 microseconds, a 22 speedup! 2453744
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 473 microseconds, a 11 speedup! 5413
+Team conv time: 110733 microseconds, a 22 speedup! 2469990
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-
+22.68
 
 32, 32, 3 512, 256
-Team conv time: 146530 microseconds, a 25 speedup! 3710339
+Team conv time: 173331 microseconds, a 22 speedup! 3921632
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146742 microseconds, a 24 speedup! 3550247
+Team conv time: 150386 microseconds, a 24 speedup! 3748664
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146482 microseconds, a 25 speedup! 3754144
+Team conv time: 147441 microseconds, a 25 speedup! 3747840
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147815 microseconds, a 24 speedup! 3556463
+Team conv time: 147459 microseconds, a 24 speedup! 3542491
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146203 microseconds, a 25 speedup! 3760567
+Team conv time: 146527 microseconds, a 25 speedup! 3750473
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 149302 microseconds, a 23 speedup! 3564442
+Team conv time: 146674 microseconds, a 24 speedup! 3544379
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146839 microseconds, a 24 speedup! 3550731
+Team conv time: 147220 microseconds, a 27 speedup! 4075501
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147301 microseconds, a 24 speedup! 3563620
+Team conv time: 146910 microseconds, a 25 speedup! 3749126
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148664 microseconds, a 23 speedup! 3551685
+Team conv time: 147847 microseconds, a 25 speedup! 3750888
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146817 microseconds, a 25 speedup! 3754313
+Team conv time: 146140 microseconds, a 25 speedup! 3753287
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147339 microseconds, a 24 speedup! 3557675
+Team conv time: 146254 microseconds, a 24 speedup! 3544768
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 152232 microseconds, a 23 speedup! 3514325
+Team conv time: 146701 microseconds, a 24 speedup! 3546090
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147306 microseconds, a 25 speedup! 3770932
+Team conv time: 146486 microseconds, a 24 speedup! 3544980
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147338 microseconds, a 24 speedup! 3560167
+Team conv time: 146313 microseconds, a 24 speedup! 3546279
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147590 microseconds, a 25 speedup! 3702747
+Team conv time: 146663 microseconds, a 24 speedup! 3553671
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147100 microseconds, a 24 speedup! 3560495
+Team conv time: 146524 microseconds, a 25 speedup! 3752703
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146859 microseconds, a 24 speedup! 3560871
+Team conv time: 146174 microseconds, a 25 speedup! 3750673
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147598 microseconds, a 24 speedup! 3558010
+Team conv time: 147473 microseconds, a 24 speedup! 3544947
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146868 microseconds, a 24 speedup! 3550569
+Team conv time: 146194 microseconds, a 24 speedup! 3545183
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147335 microseconds, a 24 speedup! 3562197
+Team conv time: 146543 microseconds, a 24 speedup! 3547505
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148619 microseconds, a 25 speedup! 3759363
+Team conv time: 146433 microseconds, a 24 speedup! 3545205
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147983 microseconds, a 25 speedup! 3771984
+Team conv time: 147119 microseconds, a 24 speedup! 3546918
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148882 microseconds, a 25 speedup! 3758178
+Team conv time: 146451 microseconds, a 24 speedup! 3543056
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146474 microseconds, a 24 speedup! 3565508
+Team conv time: 147193 microseconds, a 24 speedup! 3545813
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146657 microseconds, a 24 speedup! 3557260
+Team conv time: 146510 microseconds, a 26 speedup! 3884356
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147244 microseconds, a 24 speedup! 3548933
+Team conv time: 146471 microseconds, a 25 speedup! 3748805
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 149288 microseconds, a 23 speedup! 3555195
+Team conv time: 146570 microseconds, a 24 speedup! 3544636
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146771 microseconds, a 24 speedup! 3548955
+Team conv time: 147365 microseconds, a 25 speedup! 3751625
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147405 microseconds, a 24 speedup! 3562958
+Team conv time: 146937 microseconds, a 24 speedup! 3545047
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 154957 microseconds, a 22 speedup! 3551328
+Team conv time: 146567 microseconds, a 24 speedup! 3547774
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 168506 microseconds, a 22 speedup! 3756621
+Team conv time: 146910 microseconds, a 24 speedup! 3543165
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146945 microseconds, a 25 speedup! 3765904
+Team conv time: 146602 microseconds, a 27 speedup! 4073270
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146945 microseconds, a 24 speedup! 3550343
+Team conv time: 146604 microseconds, a 24 speedup! 3544524
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146328 microseconds, a 24 speedup! 3558587
+Team conv time: 146180 microseconds, a 24 speedup! 3547468
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147037 microseconds, a 24 speedup! 3586579
+Team conv time: 146862 microseconds, a 24 speedup! 3544695
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148969 microseconds, a 25 speedup! 3836634
+Team conv time: 146420 microseconds, a 24 speedup! 3545334
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146251 microseconds, a 24 speedup! 3572710
+Team conv time: 146729 microseconds, a 24 speedup! 3544145
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147816 microseconds, a 23 speedup! 3546809
+Team conv time: 146214 microseconds, a 24 speedup! 3547056
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148512 microseconds, a 25 speedup! 3762978
+Team conv time: 146830 microseconds, a 24 speedup! 3545002
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 149324 microseconds, a 23 speedup! 3553414
+Team conv time: 146662 microseconds, a 24 speedup! 3547195
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147663 microseconds, a 25 speedup! 3759886
+Team conv time: 146751 microseconds, a 24 speedup! 3543117
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146698 microseconds, a 24 speedup! 3561660
+Team conv time: 146327 microseconds, a 24 speedup! 3547329
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147888 microseconds, a 23 speedup! 3548950
+Team conv time: 147028 microseconds, a 24 speedup! 3546216
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 148352 microseconds, a 23 speedup! 3555973
+Team conv time: 146566 microseconds, a 26 speedup! 3886202
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147115 microseconds, a 24 speedup! 3566874
+Team conv time: 146799 microseconds, a 25 speedup! 3749895
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 146582 microseconds, a 24 speedup! 3559508
+Team conv time: 146797 microseconds, a 24 speedup! 3543516
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 147400 microseconds, a 24 speedup! 3557584
+Team conv time: 146638 microseconds, a 24 speedup! 3543333
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 150208 microseconds, a 23 speedup! 3569143
+Team conv time: 146529 microseconds, a 24 speedup! 3547090
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 172595 microseconds, a 20 speedup! 3557717
+Team conv time: 146588 microseconds, a 25 speedup! 3750504
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 149952 microseconds, a 25 speedup! 3784535
+Team conv time: 147143 microseconds, a 24 speedup! 3547255
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-
+24.38
 
 64, 64, 1 256, 64
-Team conv time: 19062 microseconds, a 32 speedup! 627689
+Team conv time: 8630 microseconds, a 79 speedup! 685342
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 11023 microseconds, a 32 speedup! 361878
+Team conv time: 8883 microseconds, a 47 speedup! 425051
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8962 microseconds, a 40 speedup! 362417
+Team conv time: 8874 microseconds, a 40 speedup! 362619
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8992 microseconds, a 40 speedup! 362506
+Team conv time: 8887 microseconds, a 40 speedup! 362705
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8977 microseconds, a 40 speedup! 362603
+Team conv time: 9066 microseconds, a 39 speedup! 362050
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8935 microseconds, a 40 speedup! 363172
+Team conv time: 8911 microseconds, a 40 speedup! 362711
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 10946 microseconds, a 33 speedup! 361903
+Team conv time: 8842 microseconds, a 41 speedup! 362734
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 9647 microseconds, a 37 speedup! 362404
+Team conv time: 8884 microseconds, a 40 speedup! 362613
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8938 microseconds, a 40 speedup! 362427
+Team conv time: 8827 microseconds, a 41 speedup! 362644
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8913 microseconds, a 40 speedup! 362417
+Team conv time: 8906 microseconds, a 40 speedup! 362783
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 9683 microseconds, a 37 speedup! 363297
+Team conv time: 8910 microseconds, a 40 speedup! 363485
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 19229 microseconds, a 18 speedup! 361950
+Team conv time: 9997 microseconds, a 36 speedup! 362814
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8875 microseconds, a 40 speedup! 362381
+Team conv time: 9568 microseconds, a 37 speedup! 362586
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8906 microseconds, a 40 speedup! 362615
+Team conv time: 8858 microseconds, a 40 speedup! 362635
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 10279 microseconds, a 35 speedup! 362572
+Team conv time: 8841 microseconds, a 41 speedup! 362655
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8939 microseconds, a 40 speedup! 364563
+Team conv time: 8873 microseconds, a 40 speedup! 362775
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8875 microseconds, a 40 speedup! 361963
+Team conv time: 8906 microseconds, a 40 speedup! 362573
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8941 microseconds, a 40 speedup! 362651
+Team conv time: 8867 microseconds, a 40 speedup! 362695
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8928 microseconds, a 40 speedup! 362360
+Team conv time: 8861 microseconds, a 40 speedup! 362668
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8870 microseconds, a 40 speedup! 362470
+Team conv time: 8805 microseconds, a 41 speedup! 362628
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8919 microseconds, a 40 speedup! 363254
+Team conv time: 8825 microseconds, a 41 speedup! 363605
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8911 microseconds, a 40 speedup! 361906
+Team conv time: 8875 microseconds, a 40 speedup! 362902
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8891 microseconds, a 40 speedup! 362450
+Team conv time: 8857 microseconds, a 40 speedup! 362556
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8927 microseconds, a 40 speedup! 362537
+Team conv time: 8953 microseconds, a 40 speedup! 362610
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8995 microseconds, a 40 speedup! 362467
+Team conv time: 8907 microseconds, a 40 speedup! 362572
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8984 microseconds, a 40 speedup! 364298
+Team conv time: 8854 microseconds, a 40 speedup! 362703
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8879 microseconds, a 40 speedup! 361984
+Team conv time: 8862 microseconds, a 40 speedup! 362641
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8922 microseconds, a 40 speedup! 362446
+Team conv time: 8886 microseconds, a 40 speedup! 362689
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8936 microseconds, a 40 speedup! 362431
+Team conv time: 8974 microseconds, a 40 speedup! 362643
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8988 microseconds, a 40 speedup! 362479
+Team conv time: 8875 microseconds, a 40 speedup! 362571
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8917 microseconds, a 40 speedup! 363243
+Team conv time: 8902 microseconds, a 40 speedup! 363513
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8963 microseconds, a 40 speedup! 361984
+Team conv time: 8852 microseconds, a 40 speedup! 362698
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8814 microseconds, a 41 speedup! 362397
+Team conv time: 8880 microseconds, a 40 speedup! 362638
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8934 microseconds, a 40 speedup! 362504
+Team conv time: 8844 microseconds, a 41 speedup! 362712
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 25523 microseconds, a 14 speedup! 362478
+Team conv time: 9708 microseconds, a 37 speedup! 362584
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8920 microseconds, a 40 speedup! 364421
+Team conv time: 8856 microseconds, a 40 speedup! 362610
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8925 microseconds, a 40 speedup! 361933
+Team conv time: 10214 microseconds, a 35 speedup! 362590
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8947 microseconds, a 40 speedup! 361997
+Team conv time: 8834 microseconds, a 41 speedup! 362648
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8925 microseconds, a 40 speedup! 362443
+Team conv time: 8864 microseconds, a 40 speedup! 362655
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8930 microseconds, a 40 speedup! 362463
+Team conv time: 8949 microseconds, a 40 speedup! 362609
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8905 microseconds, a 40 speedup! 363423
+Team conv time: 8782 microseconds, a 41 speedup! 363394
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8919 microseconds, a 40 speedup! 362016
+Team conv time: 8894 microseconds, a 40 speedup! 362203
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8856 microseconds, a 40 speedup! 362071
+Team conv time: 8875 microseconds, a 40 speedup! 362638
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8953 microseconds, a 40 speedup! 362683
+Team conv time: 8836 microseconds, a 41 speedup! 362686
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8912 microseconds, a 40 speedup! 362562
+Team conv time: 9792 microseconds, a 37 speedup! 362620
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8919 microseconds, a 40 speedup! 364324
+Team conv time: 13021 microseconds, a 27 speedup! 362712
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8946 microseconds, a 40 speedup! 361979
+Team conv time: 8939 microseconds, a 40 speedup! 362066
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8920 microseconds, a 40 speedup! 362032
+Team conv time: 8872 microseconds, a 40 speedup! 362560
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8935 microseconds, a 40 speedup! 362422
+Team conv time: 11150 microseconds, a 32 speedup! 362567
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-Team conv time: 8943 microseconds, a 40 speedup! 362430
+Team conv time: 9621 microseconds, a 37 speedup! 362549
 COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
-
+40.24
 

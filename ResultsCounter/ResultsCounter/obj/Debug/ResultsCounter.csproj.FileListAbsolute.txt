@@ -1,0 +1,7 @@
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\bin\Debug\ResultsCounter.exe.config
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\bin\Debug\ResultsCounter.exe
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\bin\Debug\ResultsCounter.pdb
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\obj\Debug\ResultsCounter.csprojAssemblyReference.cache
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\obj\Debug\ResultsCounter.csproj.CoreCompileInputs.cache
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\obj\Debug\ResultsCounter.exe
+E:\Documents\CompSci Yr 3\Concurrent\ConcurrentAssignment\ResultsCounter\ResultsCounter\obj\Debug\ResultsCounter.pdb
