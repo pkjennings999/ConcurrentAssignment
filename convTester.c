@@ -11,32 +11,12 @@ int main(void)
     {"256", "256", "5", "64", "64"},
     {"512", "512", "7", "32", "32"}
     };
-
-    // for (int i = 0; i < 10; i++)
-    // {
-    //     int sum = 0;
-    //     for (int j = 0; j < 10; j++)
-    //     {
-    //         sum += i * j;
-    //     }
-    //     printf("sum of %d = %d\n", i, sum);
-    // }
-
-    // for (int i = 0; i < 10; ++i)
-    // {
-    //     int sum = 0;
-    //     for (int j = 0; j < 10; ++j)
-    //     {
-    //         sum += i * j;
-    //     }
-    //     printf("sum of %d = %d\n", i, sum);
-    // }
     /*
     * Use -S to generate assembly code
     * Download perf for performance info. perf stat -e
     */
 
-    freopen("m++.txt", "w+", stdout);
+    freopen("restrict.txt", "w+", stdout);
     for (int i = 0; i < 3; i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);
