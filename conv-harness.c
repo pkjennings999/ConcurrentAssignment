@@ -378,13 +378,13 @@ void multichannel_conv(int16_t *** image, int16_t **** kernels,
 // }
 
 /* the fast version of matmul written by the team */
-void team_conv(int16_t ***  restrict image, int16_t ****  restrict kernels, float ***  restrict output,
+void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
                int width, int height, int nchannels, int nkernels,
                int kernel_order)
 {
   int h, w, x, y, c, m;
 
-  double**** restrict newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
+  double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
   #pragma omp parallel for collapse(4)
   for (int i = 0; i < nkernels; i++)
   {
