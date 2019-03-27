@@ -385,7 +385,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
   int h, w, x, y, c, m;
 
   double**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
-  #pragma omp parallel for collapse(4)
+  #pragma omp parallel for simd collapse(4)
   for (int i = 0; i < nkernels; i++)
   {
     for (int j = 0; j < nchannels; j++)
@@ -400,16 +400,20 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
     }
   }
 
+
   #pragma omp parallel for collapse(3)
-  for ( m = 0; m < nkernels; ++m ) {
-    for ( w = 0; w < width; ++w ) {
-      for ( h = 0; h < height; ++h ) {
+  for ( m = 0; m < nkernels; m++ ) {
+    for ( w = 0; w < width; w++ ) {
+      for ( h = 0; h < height; h++ ) {
         double sum = 0.0;
-        for ( x = 0; x < kernel_order; ++x) {
-          for ( y = 0; y < kernel_order; ++y ) {
-            #pragma omp simd safelen(4)
-            for(c = 0; c < nchannels; ++c) {
-              sum += (double)image[w+x][h+y][c] * (double) newKernels[m][x][y][c];
+        for ( x = 0; x < kernel_order; x++) {
+          for ( y = 0; y < kernel_order; y++ ) {
+            #pragma omp simd
+            for(c = 0; c < nchannels; c+=4) {
+              sum += image[w+x][h+y][c] * newKernels[m][x][y][c];
+              sum += image[w+x][h+y][c+1] * newKernels[m][x][y][c+1];
+              sum += image[w+x][h+y][c+2] * newKernels[m][x][y][c+2];
+              sum += image[w+x][h+y][c+3] * newKernels[m][x][y][c+3];
             }
           }
           output[m][w][h] = (float) sum;
