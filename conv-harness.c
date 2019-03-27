@@ -399,24 +399,44 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
       }
     }
   }
-
-
-  #pragma omp parallel for collapse(3)
-  for ( m = 0; m < nkernels; m++ ) {
-    for ( w = 0; w < width; w++ ) {
-      for ( h = 0; h < height; h++ ) {
-        double sum = 0.0;
-        for ( x = 0; x < kernel_order; x++) {
-          for ( y = 0; y < kernel_order; y++ ) {
-            #pragma omp simd
-            for(c = 0; c < nchannels; c+=4) {
-              sum += image[w+x][h+y][c] * newKernels[m][x][y][c];
-              sum += image[w+x][h+y][c+1] * newKernels[m][x][y][c+1];
-              sum += image[w+x][h+y][c+2] * newKernels[m][x][y][c+2];
-              sum += image[w+x][h+y][c+3] * newKernels[m][x][y][c+3];
+  if (nkernels > 1)
+  {
+    #pragma omp parallel for collapse(3)
+    for ( m = 0; m < nkernels; m++ ) {
+      for ( w = 0; w < width; w++ ) {
+        for ( h = 0; h < height; h++ ) {
+          double sum = 0.0;
+          for ( x = 0; x < kernel_order; x++) {
+            for ( y = 0; y < kernel_order; y++ ) {
+              #pragma omp simd
+              for(c = 0; c < nchannels; c+=4) {
+                sum += image[w+x][h+y][c] * newKernels[m][x][y][c];
+                sum += image[w+x][h+y][c+1] * newKernels[m][x][y][c+1];
+                sum += image[w+x][h+y][c+2] * newKernels[m][x][y][c+2];
+                sum += image[w+x][h+y][c+3] * newKernels[m][x][y][c+3];
+              }
             }
+            output[m][w][h] = (float) sum;
           }
-          output[m][w][h] = (float) sum;
+        }
+      }
+    }
+  }
+  else
+  {
+    #pragma omp parallel for collapse(3)
+    for ( m = 0; m < nkernels; m++ ) {
+      for ( w = 0; w < width; w++ ) {
+        for ( h = 0; h < height; h++ ) {
+          double sum = 0.0;
+          #pragma omp simd
+          for(c = 0; c < nchannels; c+=4) {
+            sum += image[w][h][c] * newKernels[m][x][y][c];
+            sum += image[w][h][c+1] * newKernels[m][x][y][c+1];
+            sum += image[w][h][c+2] * newKernels[m][x][y][c+2];
+            sum += image[w][h][c+3] * newKernels[m][x][y][c+3];
+          }
+        output[m][w][h] = (float) sum;
         }
       }
     }
