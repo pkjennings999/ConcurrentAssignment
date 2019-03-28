@@ -8,7 +8,7 @@ namespace ResultsCounter
     {
         static void Main(string[] args)
         {
-            string fileAppend = "m++KEEP.txt";
+            string fileAppend = "nocast3.txt";
             string[] lines = File.ReadAllLines("E:/Documents/CompSci Yr 3/Concurrent/ConcurrentAssignment/" + fileAppend);
             Console.WriteLine(fileAppend);
             double count = 0;

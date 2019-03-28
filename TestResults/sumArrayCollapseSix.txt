@@ -1,0 +1,10 @@
+256, 256, 5 64, 64
+Team conv time: 2485585 microseconds, a 3 speedup! 8776203
+COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
+
+
+512, 512, 7 32, 32
+Team conv time: 4848163 microseconds, a 3 speedup! 16593099
+COMMENT: sum of absolute differences (0.000000)  within acceptable range (0.062500)
+
+
