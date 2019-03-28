@@ -391,11 +391,11 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
       for ( w = 0; w < width; w++ ) {
         for ( h = 0; h < height; h++ ) {
           double sum = 0.0;
-          for(c = 0; c < nchannels; c+=4) {
+          for(c = 0; c < nchannels; c++) {
             for ( x = 0; x < kernel_order; x++) {
               for ( y = 0; y < kernel_order; y++ ) {
               // #pragma omp simd
-                sum += image[w+x][h+y][c] * kernels[m][c][x][y];
+                sum += (double)image[w+x][h+y][c] * (double)kernels[m][c][x][y];
                 // sum += image[w+x][h+y][c+1] * newKernels[m][x][y][c+1];
                 // sum += image[w+x][h+y][c+2] * newKernels[m][x][y][c+2];
                 // sum += image[w+x][h+y][c+3] * newKernels[m][x][y][c+3];
