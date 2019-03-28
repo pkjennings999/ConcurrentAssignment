@@ -386,13 +386,14 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
 
   if (1 < 2)
   {
-    #pragma omp parallel for collapse(3)
+    // #pragma omp parallel for collapse(3)
     for ( m = 0; m < nkernels; m++ ) {
       for ( w = 0; w < width; w++ ) {
         for ( h = 0; h < height; h++ ) {
           double sum = 0.0;
           for(c = 0; c < nchannels; c++) {
             for ( x = 0; x < kernel_order; x++) {
+              #pragma omp simd
               for ( y = 0; y < kernel_order; y++ ) {
               // #pragma omp simd
                 sum += (double)image[w+x][h+y][c] * (double)kernels[m][c][x][y];
