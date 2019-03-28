@@ -416,7 +416,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
   }
 }
 
-int mainCall(int argc, char ** argv)
+int main(int argc, char ** argv)
 {
   //float image[W][H][C];
   //float kernels[M][C][K][K];
