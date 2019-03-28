@@ -16,7 +16,7 @@ int main(void)
     * Download perf for performance info. perf stat -e
     */
 
-    freopen("onlysimd.txt", "w+", stdout);
+    freopen("simdAndReorder.txt", "w+", stdout);
     for (int i = 0; i < 6; i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);
