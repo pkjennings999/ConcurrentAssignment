@@ -4,11 +4,11 @@
 int main(void)
 {
     char* tests[6][5] = {
-    {"16", "16", "1", "32", "32"}, //Small everything
-    {"256", "256", "1", "32", "128"}, //Small ord, chan
+    {"32", "32", "1", "32", "32"}, //Small everything
+    {"64", "64", "1", "32", "128"}, //Small ord, chan
     {"16", "16", "7", "256", "32"}, //Small kern, wid, hei
-    {"16", "16", "1", "32", "64"},
-    {"32", "32", "1", "64", "32"},
+    {"16", "16", "5", "32", "64"},
+    {"64", "64", "1", "64", "32"},
     {"16", "16", "7", "32", "32"}
     };
     /*
@@ -16,7 +16,7 @@ int main(void)
     * Download perf for performance info. perf stat -e
     */
 
-    freopen("FINALboth.txt", "w+", stdout);
+    freopen("FINAL.txt", "w+", stdout);
     for (int i = 0; i < 6; i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);

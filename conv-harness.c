@@ -349,34 +349,6 @@ void multichannel_conv(int16_t *** image, int16_t **** kernels,
 }
 
 
-// void fillImageHashSet(int16_t *** image, int width, int height, int kernel_order, int nchannels)
-// {
-//   int wx, hy, c;
-//   // #pragma omp parallel for collapse(2)
-//   for ( wx = 0; wx < width + kernel_order; wx++ ) {
-//       for ( hy = 0; hy < height + kernel_order; hy++ ) {
-//         for ( c = 0; c < nchannels; c++ ) {
-//           char *wxbuff = (char*) malloc(20);
-//           char *hybuff = (char*) malloc(20);
-//           char *cbuff = (char*) malloc(20);
-//           char *indexbuff = (char*) malloc(61);
-//           sprintf(wxbuff, "%d", wx);
-//           sprintf(hybuff, "%d", hy);
-//           sprintf(cbuff, "%d", c);
-//           strcat(indexbuff, wxbuff);
-//           strcat(indexbuff, hybuff);
-//           strcat(indexbuff, cbuff);
-//           // hashmapsett(myMap, indexbuff, image[wx][hy][c]);
-//           free(wxbuff);
-//           free(hybuff);
-//           free(cbuff);
-//           free(indexbuff);
-//           // set(indexbuff, image[wx][hy][c]);
-//         }
-//       }
-//   }
-// }
-
 /* the fast version of matmul written by the team */
 void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
                int width, int height, int nchannels, int nkernels,
@@ -384,7 +356,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
 {
   int h, w, x, y, c, m;
 
-  if ( width * height * nchannels * nkernels * kernel_order < 15000000)
+  if ( width * height * nchannels * nkernels * kernel_order < 10000000)
   {
 
     // double**** newKernels = new_empty_4d_matrix_double  (nkernels, kernel_order, kernel_order, nchannels);
