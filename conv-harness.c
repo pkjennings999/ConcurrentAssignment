@@ -384,7 +384,7 @@ void team_conv(int16_t ***  image, int16_t ****  kernels, float ***  output,
 {
   int h, w, x, y, c, m;
 
-  int16_t**** newKernels = new_empty_4d_matrix_double(nkernels, kernel_order, kernel_order, nchannels);
+  int16_t**** newKernels = new_empty_4d_matrix_int16(nkernels, kernel_order, kernel_order, nchannels);
   #pragma omp parallel for simd collapse(4)
   for (int i = 0; i < nkernels; i++)
   {
