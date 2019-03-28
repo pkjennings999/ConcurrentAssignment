@@ -16,13 +16,13 @@ int main(void)
     * Download perf for performance info. perf stat -e
     */
 
-    freopen("nocast3.txt", "w+", stdout);
-    for (int i = 0; i < 3; i++)
+    freopen("finalB4NoPar.txt", "w+", stdout);
+    for (int i = 0; i < 6; i++)
     {
         printf("%s, %s, %s %s, %s\n",  tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]);
         char* argArray[6] = {"conv-harness",
         tests[i][0], tests[i][1], tests[i][2], tests[i][3], tests[i][4]};
-        for (int j = 0; j < 50; j++)
+        for (int j = 0; j < 5; j++)
         {
             mainCall(6, argArray);
         }
